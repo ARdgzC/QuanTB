@@ -1,6 +1,6 @@
 /**
  * Java API for XML Binding (JAXB), version 2+, generates to this package Java codes.
- * Sources are XML schemas from ìsrc/main/resourcesî
+ * Sources are XML schemas from ‚Äúsrc/main/resources‚Äù
  * @author Alex Kurasoff
  *
  */

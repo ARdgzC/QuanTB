@@ -32,7 +32,6 @@ import org.msh.quantb.services.mvp.Messages;
 import org.msh.quantb.services.mvp.Presenter;
 import org.msh.quantb.view.ToolTipCellRenderer;
 
-import com.sun.corba.se.spi.legacy.connection.GetEndPointInfoAgainException;
 /**
  * General dialog to establish link between a forecasting medicines and imported medicines
  * Use for import medicines stock 

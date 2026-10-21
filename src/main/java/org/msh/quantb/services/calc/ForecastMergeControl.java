@@ -139,7 +139,7 @@ public class ForecastMergeControl {
 				}
 			}
 			if(isEnrolled && isExpected){
-				// одинаковые режими и проценты по режимам
+				// РѕРґРёРЅР°РєРѕРІС‹Рµ СЂРµР¶РёРјРё Рё РїСЂРѕС†РµРЅС‚С‹ РїРѕ СЂРµР¶РёРјР°Рј
 				ForecastUIAdapter first = getForecasts().get(0);
 				Map<RegimenUIAdapter, Float> map = new HashMap<RegimenUIAdapter, Float>();
 				Map<RegimenUIAdapter, Float> map_new = new HashMap<RegimenUIAdapter, Float>();
@@ -155,7 +155,7 @@ public class ForecastMergeControl {
 						//PercentCasesOnTreatment
 						Float value = map.get(reg);
 						if(value != null){
-							// сравниваем значение в мапе с текущим regim.getPercentCasesOnTreatment()
+							// СЃСЂР°РІРЅРёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РІ РјР°РїРµ СЃ С‚РµРєСѓС‰РёРј regim.getPercentCasesOnTreatment()
 							BigDecimal v = new BigDecimal(value.toString());
 							v = v.setScale(2, RoundingMode.HALF_UP);
 							
@@ -167,14 +167,14 @@ public class ForecastMergeControl {
 								return false;
 							}
 						}else{// not regimen in first forecast
-							// режимы  лечения должны быть одинаковыми
+							// СЂРµР¶РёРјС‹  Р»РµС‡РµРЅРёСЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕРґРёРЅР°РєРѕРІС‹РјРё
 							getMessager().showError(Messages.getString("Merge.errors.eqpersenroll"));
 							return false;
 						}
 						//PercentNewCases
 						value = map_new.get(reg);
 						if(value != null){
-							// сравниваем значение в мапе с текущим regim.getPercentCasesOnTreatment()
+							// СЃСЂР°РІРЅРёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РІ РјР°РїРµ СЃ С‚РµРєСѓС‰РёРј regim.getPercentCasesOnTreatment()
 							BigDecimal v = new BigDecimal(value.toString());
 							v = v.setScale(2, RoundingMode.HALF_UP);
 							
@@ -186,7 +186,7 @@ public class ForecastMergeControl {
 								return false;
 							}
 						}else{// not regimen in first forecast
-							// режимы лечения должны быть одинаковыми
+							// СЂРµР¶РёРјС‹ Р»РµС‡РµРЅРёСЏ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РѕРґРёРЅР°РєРѕРІС‹РјРё
 							getMessager().showError(Messages.getString("Merge.errors.eqpersexp"));
 							return false;
 						}
@@ -200,7 +200,7 @@ public class ForecastMergeControl {
 				}
 			}*/
 		}else if(single == getForecasts().size()){// all Forecasts RegimenTypesEnum.SINGLE_DRUG
-			// у препаратов должны быть равные проценты
+			// Сѓ РїСЂРµРїР°СЂР°С‚РѕРІ РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ СЂР°РІРЅС‹Рµ РїСЂРѕС†РµРЅС‚С‹
 			ForecastUIAdapter first = getForecasts().get(0);
 			Map<RegimenUIAdapter, Float> map = new HashMap<RegimenUIAdapter, Float>();
 			Map<RegimenUIAdapter, Float> map_new = new HashMap<RegimenUIAdapter, Float>();
@@ -216,7 +216,7 @@ public class ForecastMergeControl {
 					//PercentCasesOnTreatment
 					Float value = map.get(reg);
 					if(value != null){
-						// сравниваем значение в мапе с текущим regim.getPercentCasesOnTreatment()
+						// СЃСЂР°РІРЅРёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РІ РјР°РїРµ СЃ С‚РµРєСѓС‰РёРј regim.getPercentCasesOnTreatment()
 						BigDecimal v = new BigDecimal(value.toString());
 						v = v.setScale(2, RoundingMode.HALF_UP);
 						
@@ -227,12 +227,12 @@ public class ForecastMergeControl {
 							getMessager().showError(Messages.getString("Merge.errors.eqpersenroll"));
 							return false;
 						}
-					}else// нет такого значения - добавляем
+					}else// РЅРµС‚ С‚Р°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ - РґРѕР±Р°РІР»СЏРµРј
 						map.put(reg, regim.getPercentCasesOnTreatment());
 					//PercentNewCases
 					value = map_new.get(reg);
 					if(value != null){
-						// TODO сравниваем значение в мапе с текущим regim.getPercentNewCases()
+						// TODO СЃСЂР°РІРЅРёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РІ РјР°РїРµ СЃ С‚РµРєСѓС‰РёРј regim.getPercentNewCases()
 						BigDecimal v = new BigDecimal(value.toString());
 						v = v.setScale(2, RoundingMode.HALF_UP);
 						
@@ -243,7 +243,7 @@ public class ForecastMergeControl {
 							getMessager().showError(Messages.getString("Merge.errors.eqpersexp"));
 							return false;
 						}
-					}else// нет такого значения - добавляем
+					}else// РЅРµС‚ С‚Р°РєРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ - РґРѕР±Р°РІР»СЏРµРј
 						map_new.put(reg, regim.getPercentNewCases());
 				}
 			}

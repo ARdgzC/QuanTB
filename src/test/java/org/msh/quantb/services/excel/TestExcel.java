@@ -39,14 +39,14 @@ public class TestExcel extends TestCase{
 	private static final String TEST_FORECASTING_NAME2 ="verylong.qtb";
 	
 	private static ModelFactory model = new ModelFactory(testPath);
-	public static final String testDocPath = "src\\test\\resources\\doc\\byJUnit\\";
+	public static final String testDocPath = "src/test/resources/doc/byJUnit/";
 	
 	/**
 	 * This is a general test for quick found solutions and study purpose
 	 */
 	public void testGeneral(){
 		ExportExcel test = new ExportExcel();
-		test.setOutputFile(testPath + "\\general.xls");
+		test.setOutputFile(testPath + "/general.xls");
 		try {
 			test.createSummary(null, null);
 			test.save();
@@ -65,6 +65,10 @@ public class TestExcel extends TestCase{
 	 * Test excel clipboard receiving
 	 */
 	public void testClipBoard(){
+		if (java.awt.GraphicsEnvironment.isHeadless()) {
+			System.out.println("Skipping testClipBoard in headless environment");
+			return;
+		}
 		Integer[][] result = ClipBoard.getQuantities();
 		if (result != null){
 			for(int i=0 ; i< result.length; i++){
@@ -164,7 +168,7 @@ public class TestExcel extends TestCase{
 		List<MedicineConsumption> cons = fc.getMedicineConsumption();
 		
 		ExportExcelWHO report = new ExportExcelWHO();
-		String filePath = testDocPath + "\\" + TEST_EXCEL_NAME;
+		String filePath = testDocPath + "/" + TEST_EXCEL_NAME;
 		if (!filePath.endsWith(".xls")) {
 			filePath = filePath + ".xls";
 		}
@@ -196,7 +200,7 @@ public class TestExcel extends TestCase{
 		List<MedicineConsumption> cons = fc.getMedicineConsumption();
 		
 		
-		ExportExcelWHO_XLSX excel = new ExportExcelWHO_XLSX(new File( testDocPath + "\\" + TEST_EXCEL_NAME + ".xlsx"));
+		ExportExcelWHO_XLSX excel = new ExportExcelWHO_XLSX(new File( testDocPath + "/" + TEST_EXCEL_NAME + ".xlsx"));
 		excel.createReport(fc);
 		try {
 			excel.save();

@@ -42,3 +42,9 @@ out/
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Test generated temporary outputs
+src/test/resources/*.xls
+src/test/resources/*.xlsx
+
+

@@ -1,5 +1,6 @@
 package org.msh.quantb.services.excel;
 
+import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -49,6 +50,9 @@ public class ClipBoard {
 	 * @return Two dimension Integer array with row and columns contains quantities or null if something wrong on the clipboard
 	 */
 	public static Integer[][] getQuantities(){
+		if (GraphicsEnvironment.isHeadless()) {
+			return null;
+		}
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		if (toolkit != null){
 			Clipboard board = Toolkit.getDefaultToolkit().getSystemClipboard();

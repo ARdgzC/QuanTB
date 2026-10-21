@@ -95,10 +95,10 @@ public class DivMultiLineCellRenderer extends SubstanceDefaultTableCellRenderer{
 								String str = m.substring(0, MAX_CHART_LINE);
 								int ind = str.lastIndexOf(charr);
 								if(ind != -1){
-									if(ind != (str.length() - 1)){// т.е. строка закончилась не на charr
+									if(ind != (str.length() - 1)){// С‚.Рµ. СЃС‚СЂРѕРєР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ РЅРµ РЅР° charr
 										ind = str.lastIndexOf(charr);
 										text += (!text.isEmpty()?" ":"") + m.substring(0, ind + 1) + " " + m.substring(ind + 1);
-									}else// т.е. строка закончилась на charr
+									}else// С‚.Рµ. СЃС‚СЂРѕРєР° Р·Р°РєРѕРЅС‡РёР»Р°СЃСЊ РЅР° charr
 										text += (!text.isEmpty()?" ":"") + m.substring(0, ind + 1) + " " + m.substring(ind + 1);
 									isAdd = true;
 									break;

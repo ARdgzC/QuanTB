@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.msh.quantb.services.io.ForecastUIAdapter;
+import org.msh.quantb.services.io.MedicineUIAdapter;
 import org.msh.quantb.services.io.MonthUIAdapter;
 
 /**
@@ -107,11 +108,11 @@ public class LogisticCalculator implements LogisticCalculatorI {
 
 				//calculate deliveries for old style schedule
 				if(accCons.size()>0){
-					setdCalc(LogisticCalculatorsFactory.getDeliveryCalculator(false, accCons.get(0).getMonth(), accCons));
+					setdCalc(LogisticCalculatorsFactory.getDeliveryCalculator(false, accCons.get(0).getMonth(), accCons, getForecastUI().getMedicine(mC.getMed())));
 					getdCalc().exec();
 				}
 				if(regCons.size()>0){
-					setdCalc(LogisticCalculatorsFactory.getDeliveryCalculator(false, regCons.get(0).getMonth(), regCons));
+					setdCalc(LogisticCalculatorsFactory.getDeliveryCalculator(false, regCons.get(0).getMonth(), regCons, getForecastUI().getMedicine(mC.getMed())));
 					if(accCons.size()>0){
 						getdCalc().setPrevCons(accCons.get(accCons.size()-1));
 					}
@@ -203,9 +204,9 @@ public class LogisticCalculator implements LogisticCalculatorI {
 	}
 
 	@Override
-	public void recalcPStocks(List<ConsumptionMonth> consumptionSet) {
+	public void recalcPStocks(List<ConsumptionMonth> consumptionSet, MedicineUIAdapter med) {
 		//consumption set contains right deliveries
-		LogisticCalculatorsFactory.getDeliveryCalculator(false, consumptionSet.get(0).getMonth(), consumptionSet).recalcPStocks(consumptionSet);
+		LogisticCalculatorsFactory.getDeliveryCalculator(false, consumptionSet.get(0).getMonth(), consumptionSet, getForecastUI().getMedicine(med)).recalcPStocks(consumptionSet);
 	}
 
 }
