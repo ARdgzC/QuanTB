@@ -125,63 +125,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.2.5</version>
 			</plugin>
-			<plugin>
-				<groupId>com.akathist.maven.plugins.launch4j</groupId>
-				<artifactId>launch4j-maven-plugin</artifactId>
-				<version>1.7.17</version>
-				<executions>
-					<execution>
-						<id>l4j-gui</id>
-						<phase>package</phase>
-						<goals>
-							<goal>launch4j</goal>
-						</goals>
-						<configuration>
-							<icon>src/main/resources/logo1.ico</icon>
-							<manifest>src/main/resources/manifest.mf</manifest>
-							<headerType>gui</headerType>
-							<outfile>target/quantb-${project.version}.exe</outfile>
-							<jar>target/quantification-${project.version}.jar</jar>
-							<errTitle>QuanTB: Error</errTitle>
-							<classPath>
-								<mainClass>org.msh.quantb.services.mvp.Presenter</mainClass>
-							</classPath>
-
-							<jre>
-								<minVersion>1.6.0</minVersion>
-								<jdkPreference>preferJre</jdkPreference>
-								<runtimeBits>64</runtimeBits>
-								<opts>
-									<opt>
-										-Dquantb.data.path="%EXEDIR%\\data"
-									</opt>
-									<opt>
-										-Dquantb.doc.path="%EXEDIR%\\docs"
-									</opt>
-									<opt>
-										-Dquantb.version=${project.version}-${timestamp}
-									</opt>
-								</opts>
-							</jre>
-							<splash>
-								<file>src/main/resources/logo20.bmp</file>
-								<timeout>10</timeout>
-							</splash>
-							<versionInfo>
-								<fileVersion>${project.version}</fileVersion>
-								<txtFileVersion>quantb-${project.version}</txtFileVersion>
-								<copyright>Management Science for Health</copyright>
-								<productVersion>${project.version}</productVersion>
-								<txtProductVersion>eTB Manager Quantb tool ${project.version}</txtProductVersion>
-								<productName>QuanTB</productName>
-								<internalName>QuanTB</internalName>
-								<originalFilename>quantb-${project.version}.exe</originalFilename>
-								<fileDescription>eTB Manager Quantification Tool Desktop Version</fileDescription>
-							</versionInfo>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!-- Sonar plugin -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -342,6 +285,66 @@
 			</plugin>
 		</plugins>
 	</reporting>
+
+	<profiles>
+		<profile>
+			<id>windows-exe</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.akathist.maven.plugins.launch4j</groupId>
+						<artifactId>launch4j-maven-plugin</artifactId>
+						<version>2.5.3</version>
+						<executions>
+							<execution>
+								<id>l4j-gui</id>
+								<phase>package</phase>
+								<goals>
+									<goal>launch4j</goal>
+								</goals>
+								<configuration>
+									<icon>src/main/resources/logo1.ico</icon>
+									<manifest>src/main/resources/manifest.mf</manifest>
+									<headerType>gui</headerType>
+									<outfile>target/quantb-${project.version}.exe</outfile>
+									<jar>target/quantification-${project.version}.jar</jar>
+									<errTitle>QuanTB: Error</errTitle>
+									<classPath>
+										<mainClass>org.msh.quantb.services.mvp.Presenter</mainClass>
+									</classPath>
+									<jre>
+										<minVersion>17</minVersion>
+										<jdkPreference>preferJre</jdkPreference>
+										<runtimeBits>64</runtimeBits>
+										<opts>
+											<opt>-Dquantb.data.path="%EXEDIR%\\data"</opt>
+											<opt>-Dquantb.doc.path="%EXEDIR%\\docs"</opt>
+											<opt>-Dquantb.version=${project.version}-${timestamp}</opt>
+										</opts>
+									</jre>
+									<splash>
+										<file>src/main/resources/logo20.bmp</file>
+										<timeout>10</timeout>
+									</splash>
+									<versionInfo>
+										<fileVersion>${project.version}</fileVersion>
+										<txtFileVersion>quantb-${project.version}</txtFileVersion>
+										<copyright>Management Science for Health</copyright>
+										<productVersion>${project.version}</productVersion>
+										<txtProductVersion>eTB Manager Quantb tool ${project.version}</txtProductVersion>
+										<productName>QuanTB</productName>
+										<internalName>QuanTB</internalName>
+										<originalFilename>quantb-${project.version}.exe</originalFilename>
+										<fileDescription>eTB Manager Quantification Tool Desktop Version</fileDescription>
+									</versionInfo>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 	<organization>
 		<name>Management Sciences for Health</name>
